@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ESP32 Sensor Data Graph</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/charts.min.js"></script>
+</head>
+<body>
+  <div id="chart-container" style="width: 600px; height: 400px;"></div>
+  <script>
+    // const ctx = document.getElementById('chart-container').getContext('2d');
+    // const chart = new Chart(ctx, {
+    //   type: 'line',
+    //   data: {
+    //     labels: [],
+    //     datasets: [{
+    //       label: 'Sensor Reading',
+    //       data: [],
+    //       backgroundColor: 'rgba(255, 99, 132, 0.2)',
+    //       borderColor: 'rgba(255, 99, 132, 1)',
+    //       borderWidth: 1
+    //     }]
+    //   },
+    //   options: {
+    //     scales: {
+    //       yAxes: [{
+    //         ticks: {
+    //           beginAtZero: true
+    //         }
+    //       }]
+    //     }
+    //   }
+    // });
+
+    function updateChart() {
+      fetch('http://192.168.5.196/') // Replace with your ESP32 IP address
+        .then(response => response.json()) // Parse JSON response
+        .then(data => {
+          console.log(data)
+          // const sensorValue = data.sensor; // Assuming data has "sensor" property
+          // chart.data.labels.push(new Date().toLocaleTimeString()); // Add timestamp
+          // chart.data.datasets[0].data.push(sensorValue);
+          // chart.update(); // Update the chart data
+        });
+    }
+
+    // Call updateChart initially to fetch data and populate chart
+    updateChart();
+
+    // Call updateChart periodically (e.g., every second) to update with new data
+    // setInterval(updateChart, 1000);
+  </script>
+</body>
+</html>
